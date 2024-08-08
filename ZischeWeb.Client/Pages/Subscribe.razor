@@ -1,0 +1,40 @@
+﻿@page "/subscribe"
+@inject HttpClient Http
+@using ZischeWeb.Shared.Models;
+
+<h3>Subscribe to Our Newsletter</h3>
+
+@if (isSubmitted)
+{
+    <p>Thank you for subscribing!</p>
+}
+else
+{
+    <EditForm Model="subscription" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputText @bind-Value="subscription.Email" placeholder="Enter your email" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </EditForm>
+}
+
+@code {
+    private SubscriptionModel subscription = new SubscriptionModel();
+    private bool isSubmitted = false;
+
+    private async Task HandleSubmit()
+    {
+        var response = await Http.PostAsJsonAsync("https://localhost:7179/subscribe", subscription);
+        if (response.IsSuccessStatusCode)
+        {
+            isSubmitted = true;
+        }
+        else
+        {
+            Console.Write("Could not submit email");
+        }
+    }
+
+    
+}

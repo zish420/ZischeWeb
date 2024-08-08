@@ -1,0 +1,46 @@
+﻿@page "/TourDates"
+<h3>TourDates</h3>
+@using MudBlazor;
+@using ZischeWeb.Shared.Models;
+
+<MudContainer>
+    <MudGrid>
+        @foreach (var product in Products)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <MudCard>
+                    <MudCardMedia Image="https://images.pexels.com/photos/26654307/pexels-photo-26654307/free-photo-of-breakfast-with-boiled-egg.jpeg" Height="200" />
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5">Old Paint</MudText>
+                        <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+                        <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private List<Product> Products;
+
+    protected override void OnInitialized()
+    {
+        // Dummy data for demonstration
+        Products = new List<Product>
+        {
+            new Product { Name = "Old Paint", Description = "Old paint found on a stone house door." },
+            new Product { Name = "Vintage Chair", Description = "Antique chair from the 19th century." },
+            new Product { Name = "Rustic Table", Description = "Handcrafted wooden table." },
+            new Product { Name = "Artisan Pottery", Description = "Unique pottery pieces from local artisans." },
+            new Product { Name = "Handwoven Rug", Description = "Traditional rug woven with natural fibers." },
+            new Product { Name = "Vintage Map", Description = "Authentic vintage map from the early 20th century." },
+            new Product { Name = "Classic Vinyl Records", Description = "Collection of classic vinyl records." },
+            new Product { Name = "Historical Photographs", Description = "Rare historical photographs." },
+            new Product { Name = "Artisanal Jewelry", Description = "Handcrafted jewelry by local artisans." }
+        };
+    }
+}
